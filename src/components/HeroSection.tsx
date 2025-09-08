@@ -1,0 +1,84 @@
+import { Button } from "@/components/ui/button";
+import { ChevronDown, Play } from "lucide-react";
+
+const scrollToId = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
+
+const HeroSection = () => {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Video with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/flyauqab_image.png"
+          className="w-full h-full object-cover"
+        >
+          <source src="/airforce-with-jets-bg.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
+        <div className="max-w-2xl">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 bg-primary/15 text-primary border border-primary/30 px-4 py-1.5 rounded-full mb-6 text-sm font-semibold tracking-wide backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Now in Beta · Dual-Use AR/VR
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05] tracking-tight">
+            Revolutionizing pilot training with VR simulators
+          </h1>
+
+          <p className="text-lg md:text-xl text-white/80 mb-10 max-w-xl leading-relaxed">
+            Professional-grade flight training for fighter and civil aviation — 20x cheaper,
+            fully portable, and ready to fly under $2,000.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-glow"
+              onClick={() => scrollToId("pricing")}
+            >
+              Book a demo
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="text-white border-white/60 hover:bg-white hover:text-black"
+              onClick={() => scrollToId("technology")}
+            >
+              <Play className="h-4 w-4 mr-2" />
+              See the tech
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll cue */}
+      <button
+        aria-label="Scroll to content"
+        onClick={() => scrollToId("about")}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/70 hover:text-white transition-colors animate-bounce"
+      >
+        <ChevronDown className="h-8 w-8" />
+      </button>
+    </section>
+  );
+};
+
+export default HeroSection;
