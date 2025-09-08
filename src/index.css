@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark theme as primary - inspired by Loft Dynamics */
+    --background: 210 11% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 215 15% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 215 15% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 200 100% 50%;
+    --primary-foreground: 210 11% 8%;
+
+    --secondary: 200 100% 60%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 215 15% 16%;
+    --muted-foreground: 0 0% 85%;
+
+    --accent: 200 100% 50%;
+    --accent-foreground: 210 11% 8%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 15% 20%;
+    --input: 215 15% 16%;
+    --ring: 200 100% 50%;
+
+    /* Professional Aviation Design System */
+    --aviation-dark: 210 11% 8%;
+    --aviation-darker: 210 15% 4%;
+    --aviation-card: 215 15% 12%;
+    --aviation-blue: 200 100% 50%;
+    --aviation-blue-glow: 200 100% 60%;
+    --aviation-white: 0 0% 98%;
+    --aviation-gray: 0 0% 65%;
+    --aviation-border: 215 15% 20%;
+    
+    /* Advanced Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--aviation-darker) / 0.95), hsl(var(--aviation-dark) / 0.8));
+    --gradient-blue: linear-gradient(135deg, hsl(var(--aviation-blue)), hsl(var(--aviation-blue-glow)));
+    --gradient-card: linear-gradient(135deg, hsl(var(--aviation-card)), hsl(var(--aviation-card) / 0.8));
+    
+    /* Professional Shadows */
+    --shadow-glow: 0 0 30px hsl(var(--aviation-blue) / 0.3);
+    --shadow-card: 0 4px 20px hsl(var(--aviation-darker) / 0.4);
+    --shadow-hero: 0 20px 60px hsl(var(--aviation-darker) / 0.6);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Light theme as secondary */
+    --background: 0 0% 98%;
+    --foreground: 210 11% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 8%;
+
+    --primary: 200 100% 50%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 210 15% 95%;
+    --secondary-foreground: 210 11% 8%;
+
+    --muted: 210 15% 95%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 200 100% 50%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 15% 90%;
+    --input: 210 15% 90%;
+    --ring: 200 100% 50%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" 32;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
