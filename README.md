@@ -1,146 +1,129 @@
 # FlyAuqab Beta — VR Flight Training, Cleared for Takeoff ✈️
 
-> Professional-grade pilot training that fits in a backpack. Fighter jets to airliners, one universal AR/VR platform — 20x cheaper, 90% fewer emissions, and ready to fly under **$2,000**.
-
-This is the marketing site for **FlyAuqab Beta**, a portable dual-use AR/VR flight training system. It's a fast, single-page React app built to feel as crisp as the cockpit it's selling — full-bleed hero video, a head-to-head comparison table, a tech story that lands smoothly on every screen size, and now a light/dark cabin you can switch mid-flight.
-
 <p align="center">
-  <img src="docs/media/demo.gif" alt="FlyAuqab in flight — scroll tour, theme switch, and back-to-top" width="720" />
+  <img alt="Vite" src="https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white">
+  <img alt="React" src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white">
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white">
+  <img alt="Tested with Vitest + Playwright" src="https://img.shields.io/badge/tested-Vitest%20%2B%20Playwright-6E9F18?logo=vitest&logoColor=white">
+  <img alt="Live" src="https://img.shields.io/badge/live-flyauqab.waleeds.world-1EA672?logo=cloudflare&logoColor=white">
 </p>
 
-<p align="center"><em>Real capture: full-page scroll tour, live dark → light theme switch, and the return-to-top control — no mockups.</em></p>
+> Professional-grade pilot training that fits in a backpack. Fighter jets to airliners, one universal AR/VR platform — 20x cheaper, 90% fewer emissions, and ready to fly under **$2,000**.
+
+This is the official marketing site for **FlyAuqab Beta**, a portable dual-use AR/VR flight training system. It's a fast, single-page React app engineered to feel as crisp as the cockpit it's selling — a full-bleed hero video, an interactive savings calculator, a multi-step demo-booking flow, a head-to-head comparison table, and a light/dark cabin you can switch mid-flight.
+
+<p align="center">
+  <img src="docs/media/demo.gif" alt="FlyAuqab in flight — scroll tour, savings calculator, Book-a-Demo flow and theme switch" width="720" />
+</p>
+
+<p align="center"><em>Real capture: full-page scroll tour, the live Training Savings Calculator, the multi-step "Book a Demo" flow, and a dark → light theme switch — no mockups.</em></p>
 
 ---
 
 ## Why it exists
 
-Traditional full-motion simulators cost upwards of $10M and never leave the building. FlyAuqab flips that: JSBSim-grade flight dynamics, real-time weather, and physical controls in a case you can carry onto a base, into a classroom, or home for the weekend. This site tells that story and gets pilots and operators to book a demo — no drag, all lift.
+Traditional full-motion simulators cost upwards of $10M and never leave the building. FlyAuqab flips that: JSBSim-grade flight dynamics, real-time weather, and physical controls in a case you can carry onto a base, into a classroom, or home for the weekend. This site tells that story and turns curious pilots and operators into booked demos — no drag, all lift.
 
 ## What's new in this release ✨
 
-We took an already-slick landing page and gave it a full pre-flight upgrade:
+This release takes an already-slick landing page and gives it a full pre-flight upgrade — new lead-gen surfaces, a richer visual system, a hardened responsive shell, and a real test rig underneath.
 
-- **🌗 Light / dark theme toggle** — a one-tap Sun/Moon switch in the nav flips the entire aviation design system between the signature dark cockpit and a crisp daylight cabin. Your choice is remembered across visits via `localStorage`, so you land where you left off.
-- **🧪 A/B-tested hero headline** — every visitor is bucketed 50/50 into variant **A** (*"Revolutionizing pilot training with VR simulators"*) or variant **B** (*"Your flight deck. Anywhere. Under $2,000."*). The assignment is sticky per visitor, so the copy never flickers between reloads — clean data, happy marketers.
-- **📊 Scroll-progress indicator** — a thin glowing altimeter of a bar pinned to the top edge tracks exactly how far you've descended through the page.
-- **🚀 Back-to-top booster** — a floating control fades in once you clear the hero and rockets you back to the top with a smooth climb.
-- **🔆 Always-readable hero** — the headline is now locked to high-contrast white so it stays legible over the video in *both* themes.
+- **🎫 Multi-step "Book a Demo" flow** — every *Request Demo* / *Book a demo* button across the nav, hero and closing CTA now opens a guided, multi-step lead-capture modal (contact → org → use-case) with inline validation. It tracks *where* the click came from, so marketing can see which CTA actually converts.
+- **🧮 Training Savings Calculator** — an interactive section where operators dial in fleet size, sessions per month and legacy sim cost, and watch projected annual savings tick up in real time. It's the "20x cheaper" claim, made personal.
+- **🅱️ A true Variant B hero** — the A/B test is no longer just a headline swap. Variant **B** renders a completely distinct centered hero (`HeroVariantB`) with trust chips and a high-intent CTA. Deep-link either cut with `?variant=a` / `?variant=b` — no console incantations required.
+- **🌗 Light / dark theme toggle** — a one-tap Sun/Moon switch flips the entire aviation design system between the signature dark cockpit and a crisp daylight cabin, remembered across visits via `localStorage`.
+- **🎨 Atmospheric UI polish** — a subtle animated atmosphere background, scroll-triggered reveal animations, and count-up stat bands give the page depth without weighing it down.
+- **♿ Accessibility + performance pass** — skip-to-content link, semantic landmarks, visible focus rings, `prefers-reduced-motion` support, and route/section **code-splitting** so the first paint only carries the nav, hero and stats — the rest streams in on demand.
+- **📱 Hardened responsive shell** — the nav locks body scroll while the mobile menu is open, closes on `Escape`, auto-collapses when you cross the desktop breakpoint, and never lets media blow out the viewport width.
+- **🔎 SEO & PWA packaging** — JSON-LD structured data, Open Graph / Twitter cards, a canonical URL, `sitemap.xml`, `robots.txt`, a full favicon set and a web app manifest with maskable icons.
+- **📊 Scroll-progress bar + back-to-top booster** — a glowing altimeter bar tracks your descent; a floating control rockets you back to the top once you clear the hero.
+- **🧪 Real test coverage** — a Vitest + Testing Library unit/component suite, Playwright e2e smoke tests, and a GitHub Actions CI workflow that runs lint, unit tests and a production build on every push.
 
-### The A/B experiment, in plain English
+---
 
-The hero copy is a live experiment. Open the console and check the bucket you landed in:
+## Screenshots
+
+| Dark cockpit (desktop) | Daylight cabin (desktop) |
+| :---: | :---: |
+| ![Hero, dark theme](docs/media/hero-desktop-dark.png) | ![Hero, light theme](docs/media/hero-desktop-light.png) |
+
+| Training Savings Calculator | Book-a-Demo flow |
+| :---: | :---: |
+| ![Savings calculator](docs/media/savings-calculator.png) | ![Book a demo modal](docs/media/demo-modal.png) |
+
+| Hero — Variant B | Mobile |
+| :---: | :---: |
+| ![Variant B hero](docs/media/hero-variant-b.png) | <img src="docs/media/hero-mobile.png" alt="Mobile hero" width="260" /> |
+
+---
+
+## Preflight checklist (setup) 🛫
+
+You'll need **Node 18+** and npm. Then it's three commands from clone to cockpit:
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Fire up the dev server (Vite, hot-reloading)
+npm run dev
+# ➜ http://localhost:8080  (falls back to the next free port if 8080 is taken)
+
+# 3. Build the production bundle
+npm run build && npm run preview
+```
+
+That's it — no env vars, no API keys, no backend. It's a static SPA that deploys anywhere.
+
+### Flight test (running the suite)
+
+```bash
+npm run test         # Vitest unit + component tests
+npm run test:e2e     # Playwright end-to-end smoke tests
+npm run lint         # ESLint
+```
+
+---
+
+## A/B variants — pick your runway
+
+The hero is a live experiment with two genuinely different cuts:
+
+| Variant | What you get | Force it |
+| :--- | :--- | :--- |
+| **A** | Cinematic full-bleed video hero with left-aligned copy | `…/?variant=a` |
+| **B** | Centered, trust-chip hero (`HeroVariantB`) tuned for conversions | `…/?variant=b` |
+
+Assignment is a sticky 50/50 bucket stored in `localStorage`, so returning visitors always see the same cut for clean data. The `?variant=` query param overrides and persists the choice — perfect for QA and stakeholder previews. See [`docs/AB-VARIANTS.md`](docs/AB-VARIANTS.md) for the full playbook.
 
 ```js
 localStorage.getItem("flyauqab-hero-variant"); // "A" or "B"
 ```
 
-Want to preview the other cut? Set it and reload:
-
-```js
-localStorage.setItem("flyauqab-hero-variant", "B"); location.reload();
-```
-
-Variant A leads with the mission; variant B leads with the price. Swap freely — the rest of the flight plan stays the same.
-
-## Feature deck
-
-- **Cinematic hero** — autoplaying, muted, looped background video served locally (no third-party CDN, no dead links) with a poster fallback so nothing flashes on slow connections.
-- **Smart, sticky navigation** — glassy backdrop-blurred nav with working smooth-scroll anchors to every section, the new theme switch, and a proper mobile hamburger menu that closes when you tap through.
-- **Head-to-head comparison** — a responsive table (cards on mobile, grid on desktop) that pits FlyAuqab against traditional sims and generic VR across cost, realism, portability, and more.
-- **The tech story** — JSBSim-validated dynamics, real-time weather, and real-world integration laid out in a clean two-column split.
-- **Conversion-focused closers** — competitive stat cards (20x / 90% / 10x), an FAQ, and a bold closing CTA with demo + investor-deck actions.
-- **Fully responsive** — from a 390px phone to a 1440px desktop, everything reflows cleanly. No horizontal scroll, no clipped headlines, no theme surprises.
-
-## Flight deck views
-
-| Desktop · Dark (default) | Desktop · Light |
-| --- | --- |
-| ![Desktop dark](docs/media/desktop-dark.png) | ![Desktop light](docs/media/desktop-light.png) |
-
-| Section detail | Technology story |
-| --- | --- |
-| ![Comparison](docs/media/comparison.png) | ![Technology](docs/media/technology.png) |
-
-<p align="center">
-  <img src="docs/media/mobile-dark.png" alt="Mobile view" width="280" />
-</p>
-
----
-
-## Getting started (zero to running in five minutes)
-
-You'll only need two things on your machine. If you've never touched a terminal, don't sweat it — copy, paste, enter, repeat.
-
-### Prerequisites
-
-- **[Node.js](https://nodejs.org/) 18 or newer** — the JavaScript runtime that powers the build. Grab the LTS installer, run it, done. Check it worked:
-  ```bash
-  node --version
-  ```
-- **npm** — comes bundled with Node, no separate install. Verify with `npm --version`.
-
-### Install & run
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/waleedsworld/aero-cadence-labs.git
-cd aero-cadence-labs
-
-# 2. Install the dependencies (grab a coffee — it's a one-time thing)
-npm install
-
-# 3. Fire up the dev server
-npm run dev
-```
-
-Vite will print a local URL (`http://localhost:8080`). Open it and you're airborne — edits hot-reload instantly.
-
-### Build for production
-
-```bash
-# Bundle an optimized, minified build into dist/
-npm run build
-
-# Preview that production build locally before you ship it
-npm run preview
-```
-
-That's the whole pre-flight checklist. Wheels up. 🛫
-
 ---
 
 ## Tech stack
 
-Hand-built with a modern, no-nonsense front-end toolchain:
-
-- **[Vite](https://vitejs.dev/)** — lightning-fast dev server and build tool
-- **[React 18](https://react.dev/)** + **[TypeScript](https://www.typescriptlang.org/)** — typed, component-driven UI
-- **[Tailwind CSS](https://tailwindcss.com/)** — utility-first styling with a custom aviation design system (HSL tokens, gradients, glow shadows, light + dark scopes)
-- **[shadcn/ui](https://ui.shadcn.com/)** + **[Radix UI](https://www.radix-ui.com/)** — accessible, unstyled component primitives
-- **[lucide-react](https://lucide.dev/)** — clean, consistent icons
+- **Vite 5** + **React 18** + **TypeScript 5** — SWC-powered, sub-second HMR
+- **Tailwind CSS 3** with a bespoke aviation design-system (HSL tokens, dual-theme)
+- **shadcn/ui** + **Radix UI** primitives for accessible components
+- **React Router 6**, **TanStack Query**, **React Hook Form** + **Zod**
+- **Vitest** + **Testing Library** + **Playwright** for the test pyramid
+- Deployed on **Cloudflare Pages** → [flyauqab.waleeds.world](https://flyauqab.waleeds.world)
 
 ## Project structure
 
 ```
 src/
-├── components/          # Page sections (Hero, Navigation, Comparison, FAQ, Footer…)
-│   ├── ThemeToggle.tsx  # ☀️/🌙 light-dark switch
-│   ├── ScrollProgress.tsx
-│   ├── BackToTop.tsx
-│   └── ui/              # shadcn/ui primitives (button, card, dialog…)
-├── pages/               # Index (the landing page) and NotFound
-├── hooks/               # use-theme, use-ab-variant, use-mobile, use-toast
-├── lib/                 # utility helpers
-├── assets/              # imported images
-└── index.css            # design tokens (dark + .light scopes) + Tailwind layers
-public/                  # videos, images, favicon, robots.txt (served as-is)
-docs/media/              # README GIF + framed screenshots
+├── components/        # Hero (A/B), KeyStats, SavingsCalculator, DemoRequestModal, …
+│   └── ui/            # shadcn/ui primitives
+├── hooks/             # use-ab-variant, use-theme, use-demo-request, use-count-up
+├── pages/             # Index (lazy-composed sections), NotFound
+├── styles/            # ui-polish design layer
+└── index.css          # design tokens + a11y/reduced-motion base layer
 ```
-
-## Live demo
-
-Now boarding at **[flyauqab.waleeds.world](https://flyauqab.waleeds.world)**. 🌍
 
 ---
 
-Built with care for the pilots of tomorrow. **FlyAuqab — Train Smarter, Fly Further.**
+<p align="center"><em>Built with altitude. Cleared for takeoff at <a href="https://flyauqab.waleeds.world">flyauqab.waleeds.world</a>. ✈️</em></p>
