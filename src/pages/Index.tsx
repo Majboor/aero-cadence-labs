@@ -1,4 +1,6 @@
 import Navigation from "@/components/Navigation";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
 import HeroSection from "@/components/HeroSection";
 import KeyStats from "@/components/KeyStats";
 import GameChanging from "@/components/GameChanging";
@@ -14,6 +16,7 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <ScrollProgress />
       <Navigation />
       <HeroSection />
       <KeyStats />
@@ -26,6 +29,7 @@ const Index = () => {
       <FAQ />
       <ClosingCTA />
       <Footer />
+      <BackToTop />
     </div>
   );
 };
