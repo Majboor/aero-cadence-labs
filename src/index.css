@@ -76,8 +76,51 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
+  .light {
+    /* Light theme (opt-in via theme toggle) */
+    --background: 0 0% 98%;
+    --foreground: 210 11% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 8%;
+
+    --primary: 200 100% 45%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 210 15% 95%;
+    --secondary-foreground: 210 11% 8%;
+
+    --muted: 210 15% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 200 100% 45%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 15% 88%;
+    --input: 210 15% 90%;
+    --ring: 200 100% 45%;
+
+    /* Aviation tokens re-mapped for light surfaces */
+    --aviation-dark: 0 0% 98%;
+    --aviation-darker: 210 15% 88%;
+    --aviation-card: 0 0% 100%;
+    --aviation-gray: 0 0% 40%;
+    --aviation-border: 210 15% 88%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(210 20% 96% / 0.95), hsl(0 0% 100% / 0.8));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 20% 98% / 0.9));
+    --shadow-card: 0 4px 20px hsl(210 15% 70% / 0.35);
+    --shadow-hero: 0 20px 60px hsl(210 15% 70% / 0.4);
+  }
+
   .dark {
-    /* Light theme as secondary */
+    /* Legacy alias retained for compatibility */
     --background: 0 0% 98%;
     --foreground: 210 11% 8%;
 
