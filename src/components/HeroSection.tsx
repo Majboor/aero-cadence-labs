@@ -1,38 +1,64 @@
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Play } from "lucide-react";
 import { useABVariant } from "@/hooks/use-ab-variant";
+import { openDemoRequest } from "@/hooks/use-demo-request";
+import HeroVariantB from "@/components/HeroVariantB";
 
 const scrollToId = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
-const HEADLINES = {
-  A: {
-    headline: "Revolutionizing pilot training with VR simulators",
-    subhead:
-      "Professional-grade flight training for fighter and civil aviation — 20x cheaper, fully portable, and ready to fly under $2,000.",
-  },
-  B: {
-    headline: "Your flight deck. Anywhere. Under $2,000.",
-    subhead:
-      "Fighter-grade and civil VR flight training that packs into a backpack — 20x cheaper than a legacy sim, deployable in minutes.",
-  },
+// Variant A copy. Variant B lives in its own component (HeroVariantB)
+// with a distinct centered layout + CTA. Toggle via `?variant=a|b`.
+const COPY_A = {
+  headline: "Revolutionizing pilot training with VR simulators",
+  subhead:
+    "Professional-grade flight training for fighter and civil aviation — 20x cheaper, fully portable, and ready to fly under $2,000.",
 } as const;
 
 const HeroSection = () => {
   const variant = useABVariant();
-  const copy = HEADLINES[variant];
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Honor prefers-reduced-motion: hold the background video on its poster frame.
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      const video = videoRef.current;
+      if (!video) return;
+      if (media.matches) {
+        video.pause();
+        video.removeAttribute("autoplay");
+      } else {
+        video.play().catch(() => {});
+      }
+    };
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
+  // Variant B renders a distinct centered hero; A keeps the cinematic layout below.
+  if (variant === "B") {
+    return <HeroVariantB />;
+  }
+
+  const copy = COPY_A;
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video with Overlay */}
       <div className="absolute inset-0 z-0">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
+          aria-hidden="true"
+          tabIndex={-1}
           poster="/flyauqab_image.png"
           className="w-full h-full object-cover"
         >
@@ -71,7 +97,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-glow"
-              onClick={() => scrollToId("pricing")}
+              onClick={() => openDemoRequest("hero")}
             >
               Book a demo
             </Button>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Play, Plane } from "lucide-react";
+import { openDemoRequest } from "@/hooks/use-demo-request";
 
 const ClosingCTA = () => {
   return (
@@ -48,10 +49,11 @@ const ClosingCTA = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
-            <Button 
-              variant="hero-outline" 
-              size="xl" 
+            <Button
+              variant="hero-outline"
+              size="xl"
               className="group bg-white text-primary hover:bg-white/90"
+              onClick={() => openDemoRequest("closing-cta")}
             >
               <Play className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />
               Book a Demo with FlyAuqab
