@@ -71,6 +71,8 @@ const SolutionSection = () => {
               <img
                 src="/product-image-fullkit.png"
                 alt="FlyAuqab Beta Kit"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto rounded-2xl"
               />
               

@@ -167,15 +167,73 @@ All colors MUST be HSL.
 
   html {
     scroll-behavior: smooth;
+    /* Defensive guard against accidental horizontal scroll on small screens.
+       `clip` (unlike `hidden`) does not create a scroll container, so it will
+       not break `position: sticky`/`fixed` descendants. */
+    overflow-x: clip;
   }
 
   body {
     @apply bg-background text-foreground font-inter antialiased;
     font-feature-settings: "cv11", "ss01";
     font-variation-settings: "opsz" 32;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold tracking-tight;
+  }
+
+  /* Prevent media from ever forcing the layout wider than the viewport. */
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  /* Visible keyboard-focus indicator (mouse clicks stay clean via :focus-visible) */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* Skip-to-content link: off-screen until focused by keyboard */
+.skip-to-content {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 600;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+}
+.skip-to-content:focus {
+  transform: translateY(0);
+}
+
+/* Respect users who prefer reduced motion: neutralize animations,
+   smooth-scroll and transitions across the whole app. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Hold looping background media on its first frame */
+  video[autoplay] {
+    animation: none !important;
   }
 }

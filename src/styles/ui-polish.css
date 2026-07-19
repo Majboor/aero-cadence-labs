@@ -1,0 +1,181 @@
+/* ==========================================================================
+   FlyAuqab — UI polish layer
+   Additive, self-contained premium refinements. Imported once from main.tsx
+   so it can be reasoned about (and reverted) independently of the base system.
+   ========================================================================== */
+
+:root {
+  /* Distinctive aerospace display face, paired with the existing Inter body. */
+  --font-display: "Sora", "Inter", system-ui, sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Headings carry the display face + tighter optical tracking. */
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+h1 { letter-spacing: -0.035em; }
+
+/* Crisper rendering everywhere. */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Premium branded text selection. */
+::selection {
+  background: hsl(var(--aviation-blue) / 0.32);
+  color: hsl(var(--foreground));
+  text-shadow: none;
+}
+
+/* Accessible, on-brand focus ring for keyboard users only. */
+:where(a, button, [role="button"], input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid hsl(var(--aviation-blue));
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Refined custom scrollbar (WebKit + Firefox), theme-aware. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--aviation-blue) / 0.45) transparent;
+}
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--aviation-blue) / 0.35);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+  transition: background 0.2s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--aviation-blue) / 0.65);
+  background-clip: content-box;
+}
+
+/* ---- Motion primitives -------------------------------------------------- */
+
+/* Scroll reveal: initial hidden state + revealed state (toggled by Reveal). */
+.reveal-init {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+    will-change: opacity, transform, filter;
+    transition:
+      opacity 0.8s var(--ease-out-expo),
+      transform 0.8s var(--ease-out-expo),
+      filter 0.8s var(--ease-out-expo);
+  }
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  /* Interactive lift for cards / tiles. */
+  .lift {
+    transition:
+      transform 0.4s var(--ease-out-expo),
+      box-shadow 0.4s var(--ease-out-expo),
+      border-color 0.4s var(--ease-out-expo);
+  }
+  .lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px -12px hsl(var(--aviation-darker) / 0.7);
+  }
+
+  /* Animated gradient underline for links. */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    width: 100%;
+    background: var(--gradient-blue);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s var(--ease-out-expo);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Skeleton / loading shimmer for empty + loading states. */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+    background: hsl(var(--muted) / 0.6);
+  }
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--foreground) / 0.08),
+      transparent
+    );
+    animation: ui-shimmer 1.6s infinite;
+  }
+
+  /* Fine grid + grain textures for atmospheric backgrounds. */
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(var(--aviation-blue) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--aviation-blue) / 0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.035;
+  }
+
+  /* Gradient text accent for stat figures / hero flourishes. */
+  .text-gradient-aviation {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--aviation-blue)) 0%,
+      hsl(var(--aviation-blue-glow)) 55%,
+      hsl(190 100% 75%) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+/* Slow drifting aurora blobs used by the atmosphere background. */
+@keyframes ui-aurora-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(6%, 8%) scale(1.15); }
+}
+@keyframes ui-aurora-b {
+  0%, 100% { transform: translate(0, 0) scale(1.1); }
+  50%      { transform: translate(-8%, -6%) scale(0.95); }
+}
+@keyframes ui-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Respect reduced-motion across every polish primitive. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-init { transition: none; opacity: 1; transform: none; filter: none; }
+  .lift, .link-underline::after { transition: none; }
+  .shimmer::after { animation: none; }
+  [data-aurora] { animation: none !important; }
+}

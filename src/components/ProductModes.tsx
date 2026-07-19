@@ -121,6 +121,8 @@ const ProductModes = () => {
                       <img
                         src={mode.image}
                         alt={`${mode.title} pilot`}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-bottom"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
@@ -277,6 +279,8 @@ const ProductModes = () => {
                       <img
                         src={mode.image}
                         alt={`${mode.title} pilot`}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-bottom"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
