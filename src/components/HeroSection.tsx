@@ -1,11 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Play } from "lucide-react";
+import { useABVariant } from "@/hooks/use-ab-variant";
 
 const scrollToId = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
+const HEADLINES = {
+  A: {
+    headline: "Revolutionizing pilot training with VR simulators",
+    subhead:
+      "Professional-grade flight training for fighter and civil aviation — 20x cheaper, fully portable, and ready to fly under $2,000.",
+  },
+  B: {
+    headline: "Your flight deck. Anywhere. Under $2,000.",
+    subhead:
+      "Fighter-grade and civil VR flight training that packs into a backpack — 20x cheaper than a legacy sim, deployable in minutes.",
+  },
+} as const;
+
 const HeroSection = () => {
+  const variant = useABVariant();
+  const copy = HEADLINES[variant];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video with Overlay */}
@@ -37,14 +54,16 @@ const HeroSection = () => {
             Now in Beta · Dual-Use AR/VR
           </div>
 
-          {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.05] tracking-tight">
-            Revolutionizing pilot training with VR simulators
+          {/* Main Headline (A/B tested) */}
+          <h1
+            data-variant={variant}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight"
+          >
+            {copy.headline}
           </h1>
 
           <p className="text-lg md:text-xl text-white/80 mb-10 max-w-xl leading-relaxed">
-            Professional-grade flight training for fighter and civil aviation — 20x cheaper,
-            fully portable, and ready to fly under $2,000.
+            {copy.subhead}
           </p>
 
           {/* CTA Buttons */}
